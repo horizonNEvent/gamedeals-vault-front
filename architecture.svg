@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 510" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="100%" stop-color="#141c2e" />
+    </linearGradient>
+    <linearGradient id="frontGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#6d28d9" />
+    </linearGradient>
+    <linearGradient id="backGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="extGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="awesomeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#0891b2" />
+    </linearGradient>
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#94a3b8" />
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#c4b5fd" />
+    </marker>
+  </defs>
+
+  <!-- Fundo -->
+  <rect width="920" height="510" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2" />
+
+  <!-- Titulo do Diagrama -->
+  <text x="460" y="42" text-anchor="middle" font-family="'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="bold" fill="#f8fafc">
+    Arquitetura de Componentes — GameDeals Vault (Cenario 1)
+  </text>
+  <text x="460" y="66" text-anchor="middle" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" fill="#94a3b8">
+    Comunicacao REST entre Interface (Front-End), API (Back-End + SQLite) e APIs Externas (CheapShark + AwesomeAPI)
+  </text>
+
+  <!-- BOX 1: Interface (Front-End) -->
+  <g transform="translate(50, 110)" filter="url(#shadow)">
+    <rect width="210" height="160" rx="12" fill="#151d30" stroke="#8b5cf6" stroke-width="2" />
+    <rect width="210" height="38" rx="12" fill="url(#frontGrad)" />
+    <rect y="26" width="210" height="12" fill="url(#frontGrad)" />
+    <text x="105" y="24" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#ffffff">
+      Interface (Front-End)
+    </text>
+    <text x="105" y="65" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#e2e8f0">
+      React 18 + Vite
+    </text>
+    <text x="105" y="85" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">
+      Design Gamer Dark Mode
+    </text>
+    <text x="105" y="105" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">
+      Nginx Alpine (Porta 3000:80)
+    </text>
+    <rect x="15" y="122" width="180" height="24" rx="6" fill="#8b5cf6" fill-opacity="0.2" stroke="#8b5cf6" stroke-width="1" />
+    <text x="105" y="138" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#c4b5fd">
+      GET, POST, PUT, DELETE (USD/BRL)
+    </text>
+  </g>
+
+  <!-- LINHA DE CONEXAO: Front-End <-> Back-End -->
+  <line x1="260" y1="190" x2="340" y2="190" stroke="#c4b5fd" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrowPurple)" marker-start="url(#arrowPurple)" />
+  <rect x="270" y="160" width="60" height="22" rx="4" fill="#0b0f19" stroke="#334155" />
+  <text x="300" y="175" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" fill="#38bdf8">
+    REST HTTP
+  </text>
+
+  <!-- BOX 2: API Principal / Back-End -->
+  <g transform="translate(340, 110)" filter="url(#shadow)">
+    <rect width="230" height="160" rx="12" fill="#151d30" stroke="#3b82f6" stroke-width="2" />
+    <rect width="230" height="38" rx="12" fill="url(#backGrad)" />
+    <rect y="26" width="230" height="12" fill="url(#backGrad)" />
+    <text x="115" y="24" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#ffffff">
+      API Back-End
+    </text>
+    <text x="115" y="65" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#e2e8f0">
+      Python (FastAPI)
+    </text>
+    <text x="115" y="85" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">
+      Swagger UI em /docs
+    </text>
+    <text x="115" y="105" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">
+      Porta 8000:8000
+    </text>
+    <rect x="15" y="122" width="200" height="24" rx="6" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1" />
+    <text x="115" y="138" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#93c5fd">
+      Regras de Negocio, Cache &amp; Conversao
+    </text>
+  </g>
+
+  <!-- LINHA DE CONEXAO: Back-End <-> Banco de Dados -->
+  <line x1="455" y1="270" x2="455" y2="330" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)" />
+  <text x="470" y="305" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#fbbf24">
+    SQLAlchemy
+  </text>
+
+  <!-- BOX BANCO DE DADOS -->
+  <g transform="translate(355, 330)" filter="url(#shadow)">
+    <rect width="200" height="90" rx="10" fill="#192033" stroke="#f59e0b" stroke-width="1.5" />
+    <rect width="200" height="26" rx="10" fill="url(#dbGrad)" />
+    <rect y="16" width="200" height="10" fill="url(#dbGrad)" />
+    <text x="100" y="18" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#ffffff">
+      Persistencia de Dados
+    </text>
+    <text x="100" y="48" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#fef3c7">
+      Banco SQLite (gamedeals.db)
+    </text>
+    <text x="100" y="68" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="10" fill="#94a3b8">
+      Tabela games (CRUD Colecao)
+    </text>
+  </g>
+
+  <!-- LINHAS DE CONEXAO: Back-End <-> APIs Externas -->
+  <path d="M 570 160 L 640 140" fill="none" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow)" />
+  <path d="M 570 220 L 640 240" fill="none" stroke="#06b6d4" stroke-width="2.5" marker-end="url(#arrow)" />
+
+  <!-- BOX 3: API Externa 1 (CheapShark) -->
+  <g transform="translate(640, 85)" filter="url(#shadow)">
+    <rect width="230" height="115" rx="10" fill="#151d30" stroke="#10b981" stroke-width="1.5" />
+    <rect width="230" height="28" rx="10" fill="url(#extGrad)" />
+    <rect y="18" width="230" height="10" fill="url(#extGrad)" />
+    <text x="115" y="19" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#ffffff">
+      API Externa: CheapShark
+    </text>
+    <text x="115" y="48" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">
+      Ofertas Digitais de PC
+    </text>
+    <text x="115" y="66" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="10" fill="#94a3b8">
+      Gratuita &amp; Sem Chave /deals e /stores
+    </text>
+    <rect x="15" y="80" width="200" height="20" rx="5" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1" />
+    <text x="115" y="94" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#6ee7b7">
+      Precos &amp; Metacritic em USD
+    </text>
+  </g>
+
+  <!-- BOX 4: API Externa 2 (AwesomeAPI) -->
+  <g transform="translate(640, 220)" filter="url(#shadow)">
+    <rect width="230" height="115" rx="10" fill="#151d30" stroke="#06b6d4" stroke-width="1.5" />
+    <rect width="230" height="28" rx="10" fill="url(#awesomeGrad)" />
+    <rect y="18" width="230" height="10" fill="url(#awesomeGrad)" />
+    <text x="115" y="19" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#ffffff">
+      API Externa: AwesomeAPI
+    </text>
+    <text x="115" y="48" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">
+      Cotacao Oficial USD - BRL
+    </text>
+    <text x="115" y="66" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="10" fill="#94a3b8">
+      Gratuita &amp; Sem Chave /last/USD-BRL
+    </text>
+    <rect x="15" y="80" width="200" height="20" rx="5" fill="#06b6d4" fill-opacity="0.2" stroke="#06b6d4" stroke-width="1" />
+    <text x="115" y="94" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#a5f3fc">
+      Conversao em Tempo Real para Real (R$)
+    </text>
+  </g>
+
+  <!-- Legenda inferior -->
+  <rect x="50" y="460" width="820" height="30" rx="6" fill="#0d1322" stroke="#1e293b" />
+  <text x="65" y="480" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">
+    <tspan font-weight="bold" fill="#ffffff">Legenda:</tspan> 
+    <tspan fill="#c4b5fd">■</tspan> Componente 1 (Front-End) &nbsp;&nbsp;|&nbsp;&nbsp; 
+    <tspan fill="#93c5fd">■</tspan> Componente 2 (Back-End) &nbsp;&nbsp;|&nbsp;&nbsp; 
+    <tspan fill="#34d399">■</tspan> Servico Externo 1 (CheapShark) &nbsp;&nbsp;|&nbsp;&nbsp; 
+    <tspan fill="#22d3ee">■</tspan> Servico Externo 2 (AwesomeAPI) &nbsp;&nbsp;|&nbsp;&nbsp;
+    <tspan fill="#fbbf24">■</tspan> SQLite
+  </text>
+</svg>

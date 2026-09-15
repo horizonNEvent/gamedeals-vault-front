@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # Componente Back-End: API FastAPI + SQLite
+  gamedeals-api:
+    build:
+      context: ../gamedeals-api
+      dockerfile: Dockerfile
+    container_name: gamedeals-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - api-data:/app/data
+    environment:
+      - DATABASE_URL=sqlite:///./data/gamedeals.db
+    restart: unless-stopped
+    networks:
+      - gamedeals-network
+
+  # Componente Front-End: Interface Web React + Nginx
+  gamedeals-front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gamedeals-front
+    ports:
+      - "3000:80"
+    depends_on:
+      - gamedeals-api
+    restart: unless-stopped
+    networks:
+      - gamedeals-network
+
+volumes:
+  api-data:
+    driver: local
+
+networks:
+  gamedeals-network:
+    driver: bridge
