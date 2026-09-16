@@ -6,17 +6,52 @@ Este projeto representa o **Modulo de Interface (Componente Principal)** do MVP 
 
 ---
 
-## Arquitetura do Sistema (Cenario 1)
+## Arquitetura do Sistema (Cenário 1 — MVC)
 
-Conforme estabelecido nos requisitos do edital, a solucao implementa a arquitetura de modulos baseada no **Cenario 1**:
+Conforme estabelecido nos requisitos do edital, a solução implementa a arquitetura de módulos baseada no **Cenário 1**, sumarizando todos os componentes utilizados:
 
-![Arquitetura da Aplicacao](./architecture.svg)
+![Arquitetura da Aplicação](./architecture.png)
 
-* **Interface (Front-End):** React + Vite servido via Nginx Alpine (porta `3000:80`).
-* **API Back-End:** Python com FastAPI e SQLite (porta `8000:8000`).
-* **APIs Externas Publicas:** 
-  * **CheapShark API:** Catalogo de ofertas de jogos de PC e dados de lojas.
-  * **AwesomeAPI:** Cotacao comercial em tempo real do Dolar para Real (USD -> BRL).
+```mermaid
+flowchart LR
+    subgraph Cliente["Cliente"]
+        Browser["🌐 Browser do Usuário<br/>(Desktop / Mobile)"]
+    end
+
+    subgraph FrontEnd["Componente 1: Interface (Front-End)"]
+        React["⚛️ React 18 + Vite<br/>(Nginx Alpine :3000)"]
+    end
+
+    subgraph BackEnd["Componente 2: API Back-End (FastAPI)"]
+        Routes["🛣️ Routes<br/>(app/routes/games.py)"]
+        Controller["⚙️ Controller / Services<br/>(cheapshark.py & currency.py)"]
+        Model["📦 Model / Schemas<br/>(SQLAlchemy & Pydantic)"]
+        DB[("💾 SQLite<br/>(gamedeals.db)")]
+        
+        Routes -->|Encaminha request| Controller
+        Controller -->|Leitura / Escrita| Model
+        Model <--> DB
+    end
+
+    subgraph Externas["Serviços Externos Públicos"]
+        CheapShark["🎮 CheapShark API<br/>(Ofertas PC /deals)"]
+        AwesomeAPI["💵 AwesomeAPI<br/>(Cotação USD/BRL)"]
+    end
+
+    Browser <-->|Interação Web| React
+    React <-->|HTTP REST JSON<br/>GET, POST, PUT, DELETE| Routes
+    Controller <-->|Async HTTP /deals| CheapShark
+    Controller <-->|Async HTTP /last/USD-BRL| AwesomeAPI
+```
+
+### Componentes Utilizados:
+* **Interface (Front-End):** React 18 + Vite servido via Nginx Alpine (porta `3000:80`).
+* **API Back-End (FastAPI):** Python 3.12 com FastAPI, Uvicorn e SQLite (porta `8000:8000`).
+* **Rotas e Controllers:** Roteamento REST modularizado e controllers para tratamento de regras de negócio.
+* **Persistência Relacional:** SQLite via SQLAlchemy com volume Docker persistente.
+* **APIs Externas Públicas:** 
+  * **CheapShark API:** Catálogo de ofertas de jogos de PC e dados de lojas digitais.
+  * **AwesomeAPI:** Cotação comercial oficial em tempo real do Dólar para Real (USD -> BRL).
 
 ---
 
