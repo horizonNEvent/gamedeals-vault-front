@@ -18,8 +18,12 @@ import {
   ChevronDown
 } from 'lucide-react';
 
-// URL base relativa para funcionar com Nginx proxy, Vite proxy e Cloudflare Tunnel
-const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+// URL base da API: comunicação direta do navegador com a API na porta 8000 (sem necessidade de rede compartilhada no Docker)
+const API_BASE_URL = import.meta.env.VITE_API_URL || (
+  typeof window !== 'undefined' && window.location.hostname
+    ? `http://${window.location.hostname}:8000`
+    : 'http://localhost:8000'
+);
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('deals'); // 'deals' | 'collection'
