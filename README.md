@@ -6,6 +6,12 @@ Este projeto representa o **Modulo de Interface (Componente Principal)** do MVP 
 
 ---
 
+## Repositórios do Projeto (MVP PUC Minas)
+* 🌐 **Componente Principal (Interface Web Front-End):** [https://github.com/horizonNEvent/gamedeals-vault-front](https://github.com/horizonNEvent/gamedeals-vault-front)
+* ⚙️ **Componente Secundário (API REST Back-End):** [https://github.com/horizonNEvent/gamedeals-vault-api](https://github.com/horizonNEvent/gamedeals-vault-api)
+
+---
+
 ## Arquitetura do Sistema (Cenário 1 — MVC)
 
 Conforme estabelecido nos requisitos do edital, a solução implementa a arquitetura de módulos baseada no **Cenário 1**, sumarizando todos os componentes utilizados:
@@ -121,9 +127,10 @@ A interface interage com o Back-End realizando chamadas para os 4 metodos REST o
 
 ### Passo a Passo
 
-1. **Acesse a pasta do projeto:**
+1. **Clone o repositório:**
    ```bash
-   cd gamedeals-front
+   git clone https://github.com/horizonNEvent/gamedeals-vault-front.git
+   cd gamedeals-vault-front
    ```
 
 2. **Instale as dependencias:**
