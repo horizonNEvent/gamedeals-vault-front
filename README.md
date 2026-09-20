@@ -143,20 +143,41 @@ A interface interage com o Back-End realizando chamadas para os 4 metodos REST o
 
 ## Como Executar via Docker
 
-Para rodar a interface em um conteiner Docker isolado:
+Como a interface utiliza o servidor web Nginx como proxy reverso para se comunicar internamente com a API (nas rotas `/api/` e `/docs`) sem problemas de CORS, ambos os contêineres se comunicam através de uma rede compartilhada do Docker (`gamedeals-network`).
 
-1. **Construa a imagem:**
-   ```bash
-   docker build -t gamedeals-front .
-   ```
+### 1. Criar a rede compartilhada (caso ainda não tenha criado):
+```bash
+docker network create gamedeals-network
+```
 
-2. **Execute o conteiner:**
-   ```bash
-   docker run -d -p 3000:80 --name gamedeals-front-container gamedeals-front
-   ```
+### 2. Garantir que a API Back-End esteja em execução na rede:
+> Se ainda não iniciou a API, suba-a na pasta `gamedeals-api`:
+```bash
+docker run -d -p 8000:8000 --network gamedeals-network --name gamedeals-api -v gamedeals-data:/app/data -e DATABASE_URL=sqlite:///./data/gamedeals.db gamedeals-api
+```
 
-3. **Acesse no navegador:**
-   [http://localhost:3000](http://localhost:3000)
+### 3. Construir a imagem da Interface:
+```bash
+docker build -t gamedeals-front .
+```
+
+### 4. Executar o container do Front-End na rede:
+```bash
+docker run -d -p 3000:80 --network gamedeals-network --name gamedeals-front gamedeals-front
+```
+
+### 5. Acessar no navegador:
+* Interface Web: [http://localhost:3000](http://localhost:3000)
+* Documentação da API via proxy reverso: [http://localhost:3000/docs](http://localhost:3000/docs)
+
+### 6. Ver logs e parar o container:
+```bash
+# Visualizar logs em tempo real:
+docker logs -f gamedeals-front
+
+# Parar e remover o container:
+docker stop gamedeals-front && docker rm gamedeals-front
+```
 
 ---
 
